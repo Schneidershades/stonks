@@ -24,6 +24,8 @@ class ProcessTransactionService
 
             if($receiver->balance < $request->amount){
 
+                dd($receiver->balance , $request->amount);
+
                 $error = true;
                 $transaction->status = 'failed';
                 $transaction->response = 'Insufficient balance. Please fund your wallet';

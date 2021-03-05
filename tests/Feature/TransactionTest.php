@@ -31,10 +31,12 @@ class TransactionTest extends TestCase
 
     public function test_if_user_can_make_a_withdrawal()
     {
-        // $this->withOutExceptionHandling();
-        $wallet = Wallet::factory()->create();
-        $user = $this->actingAs($wallet->user);
-        dd($wallet->balance);
+        $this->withOutExceptionHandling();
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $wallet = Wallet::where('user_id', $user->id)->first();
+        $wallet->balance = 1000;
+        $wallet->save();
         $response = $this->post('api/v1/transaction/withdrawal', [
             'amount' => 1.87,
             'description' => 'i need this withdrawal urgently',
