@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('user_id')->unsigned()->index()->nullable();
             $table->integer('receiver_id')->unsigned()->index()->nullable();
             $table->enum('action', ['deposit', 'transfer', 'withdrawal']);
-            $table->enum('type', ['debit', 'credit']);
+            $table->enum('type', ['debit', 'credit'])->nullable();
             $table->string('status')->default('pending')->nullable();
             $table->text('description')->nullable();
             $table->text('response')->nullable();

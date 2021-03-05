@@ -33,19 +33,24 @@ class TransactionObserver
     {
         if($transaction->action == 'deposit' && $transaction->status == 'success'){
             $this->creditWallet($transaction->user_id, $transaction->amount);
+            $transaction->response = "credit";
             $transaction->response = "Successful deposit transaction $transaction->amount";
         }
 
         if($transaction->action == 'withdrawal' && $transaction->status == 'success'){
             $this->debitWallet($transaction->user_id, $transaction->amount);
+            $transaction->response = "credit";
             $transaction->response = "Successful withdrawal transaction $transaction->amount";
         }
 
         if($transaction->action == 'transfer' && $transaction->status == 'success'){
             $this->creditWallet($transaction->receiver_id, $transaction->amount);
             $this->debitWallet($transaction->user_id, $transaction->amount);
+            $transaction->response = "credit";
             $transaction->response = "Successful transfer transaction $transaction->amount";
         }
+
+        $transaction->save();
     }
 
     public function debitWallet($user_id, $amount)

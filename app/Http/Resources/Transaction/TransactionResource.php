@@ -26,6 +26,11 @@ class TransactionResource extends JsonResource
                 'initializeNote' => 'You made a transfer of '. $this->amount.' from your account',
                 'transferAccount' => $this->receiver,
             ]),
+
+            $this->mergeWhen($this->action == 'transfer' && $this->receiver_id == auth()->user()->id, [
+                'initializeNote' => 'You received '. $this->amount.' to your account',
+                'transferAccount' => $this->user,
+            ]),
             'action' => $this->action,
             'status' => $this->status,
             'description' => $this->description,

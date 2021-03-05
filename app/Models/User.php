@@ -71,6 +71,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class, 'user_id');
+        return $this->hasMany(Transaction::class, 'user_id')->orWhere('user_id', auth()->user()->id);
     }
 }
