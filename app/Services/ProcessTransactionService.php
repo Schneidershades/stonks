@@ -45,6 +45,7 @@ class ProcessTransactionService
         $transactionCount = Transaction::where('action', $type)
             ->whereDate('created_at', Carbon::today()->toDateString())
             ->where('status', 'success')
+            ->where('user_id', auth()->user()->id)
             ->get();
 
         if($transactionCount->count() >= 4) {
