@@ -23,9 +23,6 @@ class ProcessTransactionService
             $receiver = Wallet::where('user_id', auth()->user()->id)->first();
 
             if($receiver->balance < $request->amount){
-
-                dd($receiver->balance , $request->amount);
-
                 $error = true;
                 $transaction->status = 'failed';
                 $transaction->response = 'Insufficient balance. Please fund your wallet';
@@ -42,6 +39,20 @@ class ProcessTransactionService
     		$receiver = User::where('email', $request->receiver_email)->first();
     		$transaction->receiver_id = $receiver->id;
     	}
+
+        // enforce limits per day
+        $transactionCount = Transaction::where('action', $type)
+            ->where('created_at', Carbon::today()->toDateString())
+            ->where('status', 'success')
+            ->count();
+
+        if($transactionCount > 4) {
+            return [
+                'error' => true,
+                'code' => 403,
+                'message' => 'Sorry!!! You have exceeded your limit for the day.'
+            ];
+        }
 
         $transaction->status = 'success';
 
