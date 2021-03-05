@@ -48,7 +48,7 @@ class ProcessTransactionService
             ->where('user_id', auth()->user()->id)
             ->get();
 
-        if($transactionCount->count() >= 4) {
+        if($transactionCount->count() > 4) {
             return [
                 'error' => true,
                 'code' => 403,
