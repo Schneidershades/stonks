@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Transaction;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
@@ -41,6 +42,11 @@ class TransactionController extends Controller
     */
     public function index()
     {
-    	return $this->showAll(auth()->user()->transactions()->latest()->get());
+        $transactions = Transaction::where('user_id', auth()->user()->id)
+                            ->orWhere('receiver_id', auth()->user()->id)
+                            ->latest()
+                            ->get();
+
+    	return $this->showAll($transactions);
     }
 }
