@@ -26,7 +26,7 @@ class TransactionObserver
      */
     public function updated(Transaction $transaction)
     {
-        $this->processTransactions($transaction);
+
     }
 
     public function processTransactions(Transaction $transaction)

@@ -56,7 +56,7 @@ class ProcessTransactionService
             ];
         }
 
-        $remainderLimit = $transactionCount->count() - 4;
+        $remainderLimit = 4 - $transactionCount->count();
 
         $transaction->status = 'success';
 
