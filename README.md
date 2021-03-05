@@ -22,6 +22,10 @@ Stonks Service is an accessible, powerful, and provides tools required for large
 - enforce limits by accepting daily limits of 4 transaction based on action types
 - View recent tranactions or preferably summary
 
+## Time frame used
+
+2Hours 50 Minutes
+
 
 ## How would you deploy the above on AWS?
 
