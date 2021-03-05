@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Transaction;
 use App\Services\WalletBalanceService;
+use Carbon\Carbon;
 
 class ProcessTransactionService
 {
@@ -42,17 +43,19 @@ class ProcessTransactionService
 
         // enforce limits per day
         $transactionCount = Transaction::where('action', $type)
-            ->where('created_at', Carbon::today()->toDateString())
+            ->whereDate('created_at', Carbon::today()->toDateString())
             ->where('status', 'success')
-            ->count();
+            ->get();
 
-        if($transactionCount > 4) {
+        if($transactionCount->count() >= 4) {
             return [
                 'error' => true,
                 'code' => 403,
                 'message' => 'Sorry!!! You have exceeded your limit for the day.'
             ];
         }
+
+        $remainderLimit = $transactionCount->count() - 4;
 
         $transaction->status = 'success';
 
@@ -61,7 +64,7 @@ class ProcessTransactionService
         return [
             'error' => false,
             'code' => 200,
-            'message' => "Your $type transaction was successful"
+            'message' => "Your $type transaction was successful!!! You have $remainderLimit $type transactions left for the day"
         ];
     }
 }

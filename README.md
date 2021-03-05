@@ -4,28 +4,59 @@
 
 Stonks Service is an accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Backend Application show case
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+[Click here to visit the Open API documentation](http://stonks-finance.herokuapp.com/api/docs).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Transfer to another account via email addresses
+- make deposits/ top ups
+- process withdrawals
+- enforce limits by accepting daily limits of 4 transaction based on action types
+- View recent tranactions or preferably summary
 
-## Laravel Sponsors
+## Features of the application
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Transfer to another account via email addresses
+- make deposits/ top ups
+- process withdrawals
+- enforce limits by accepting daily limits of 4 transaction based on action types
+- View recent tranactions or preferably summary
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## How would you deploy the above on AWS?
 
-## Code of Conduct
+i will carry out deployment ensuring the following:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. AWS Auto Scaling and Load Balancing
 
-## Security Vulnerabilities
+2. Amazon S3 and CloudFront CDN
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. AWS RDS Aurora (managed database services)
 
-## License
+4. Amazon VPC and Networking
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Route53
+
+6. AWS Lambda
+
+7. Stateless applications and processes.
+
+8. Dev, test and Production Parity.
+
+9. Continuous Integration and Continuous Delivery – CI/CD
+
+
+## Where do you see bottlenecks in your proposed architecture and how would you approach scaling this app starting from 100 reqs/day to 900MM reqs/day over 6 months?
+
+1. Split out the Database Layer
+2. Split Out the Clients usage. we can split it out so that we can handle scaling the service based on its own specific traffic patterns
+3. Adding a Load Balancer.A load balancer also enables autoscaling. We can set up our load balancer to increase the number of instances during the Superbowl when everyone is online and decrease the number of instances when all of our users are asleep.
+4. Providing a CDN. A CDN will automatically cache our images at different data centers throughout the world.
+5. Scaling the Data Layer
+6. Caching
+7. Providing read replicas
+8. Use a multi-AZ infrastructure for reliability.
+9. Make use of self-scaling services like ELB, S3, SQS, SNS, DynamoDB, etc.
+
+
+
