@@ -30,7 +30,7 @@ class ProcessTransactionService
 
                 return [
                     'error' => true,
-                    'code' => 401,
+                    'code' => 403,
                     'message' => 'Insufficient balance. Please fund your wallet'
                 ];
             }

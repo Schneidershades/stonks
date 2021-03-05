@@ -38,11 +38,11 @@ class UserTest extends TestCase
     {
         return [
            "first_name" => "Schneider", 
+           "username" => "shades", 
            "middle_name" => "Busayo", 
            "last_name" => "Komolafe", 
            "email" => rand(1000, 9000)."info@l2w.com", 
            "password" => "password",
-           "role" => "Student",
         ];
     }
 }
