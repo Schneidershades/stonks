@@ -44,7 +44,7 @@ class Controller extends BaseController
     /**
      * @OA\Info(
      *      version="1.0.0",
-     *      title="Stonks Backend Assignment App OpenApi API Documentation",
+     *      title="Stonks Finance Backend App OpenApi API Documentation",
      *      description="Stonks Backend Assignment App Using L5 Swagger OpenApi description",
      *      @OA\Contact(
      *          email="schneidershades@gmail.com"
